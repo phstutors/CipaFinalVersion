@@ -14,29 +14,37 @@
     <!-- Right side of the page-->
     <div class="right-side">
       <img :src="imageSrc" class="banner">
-    <p>Por favor, insira seus <br/>dados para se cadastrar</p>
+    <p>Por favor, insira seus <br/>dados para entrar</p>
     <div id="inputs-group">
 
           <div class="inputs">
             <div class="col-sm-10">
               <label for="staticEmail">Digite seu Email:</label>
-              <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" v-bind:class="{ error: !emailValid }" v-model="email" @input="checkEmail">
+              <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" v-bind:class="{ error: !emailValid }" v-model="email" @input="checkEmail" aria-describedby="passwordHelpBlock">
               <div id="passwordHelpBlock" class="form-text">
         Use de preferencia seu email discente.
       </div>
               
           </div>
+          
             <div class="senha1">
               <label for="inputPassword5" class="form-label">Digite sua senha:</label>
-      <input ref="senha1" v-model="senha" @input="updateImage" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="">
-      <div id="passwordHelpBlock" class="form-text">
-        Sua senha tem que ter 8-20 caracteres, e não conter espaço ou emojis.
-      </div>
+      <input :type="showPassword ? 'text' : 'password'" v-model="senha" @input="updateImage" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="">
+      <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @click="togglePasswordVisibility">
+  <label class="form-check-label" for="flexCheckDefault">
+    {{ showPassword ? "Ocultar Senha" : "Mostrar Senha" }}
+  </label>
+
+</div>
             </div>
       </div>
           </div>
 
-      <button type="button" class="btn btn-primary btn-lg">Entrar</button>
+      <button type="button" class="btn btn-primary btn-lg" style="margin-top: 2%; margin-bottom: 1%;">Entrar</button>
+      <div id="passwordHelpBlock" class="form-text">
+        Não tem uma conta? <a @click="cadastrar" style="color: blue;">Cadastre-se!</a>
+      </div>
     </div>
 
   
@@ -165,6 +173,9 @@ button:hover{
 background-color: #1A314B!important;
 animation: pulseAnimation 2s ease-in-out infinite!important;
 }
+a:hover{
+  cursor: pointer!important;
+}
 
 @keyframes pulseAnimation {
   0% {
@@ -198,25 +209,37 @@ export default {
       senha: "",
       emailValid: true,
       imageSrc: "C.png",
+      showPassword: false,
     };
   },
   methods: {
-     logar() {
+    togglePasswordVisibility() {
     
+    this.showPassword = !this.showPassword;
+    if(this.showPassword == true && this.senha){
+      this.imageSrc = "public/closed.png"
+    }else if (this.showPassword == false && this.senha){
+      this.imageSrc = "public/open.png"
+    }else if(this.senha == ""){
+      this.imageSrc = "public/c.png"
+    }
+   
+  },
+     cadastrar() {
+      
+      this.$router.push("/register");
 
     },
 
     updateImage(){
 
-      if(this.senha){
-          this.imageSrc = "public/open.png"
-      }else{
-        this.imageSrc = "public/C.png"
-      }
-
-      if(this.$refs.senha1.type == "text"){
-        this.imageSrc = "FundoCipa.png"
-      }
+     if(this.showPassword == true && this.senha){
+      this.imageSrc = "public/closed.png"
+    }else if (this.showPassword == false && this.senha){
+      this.imageSrc = "public/open.png"
+    }else if(this.senha == ""){
+      this.imageSrc = "public/c.png"
+    }
 
     },
     cadastre() {
@@ -233,5 +256,7 @@ export default {
       }
     }
   },
+
+
 };
 </script>
