@@ -3,9 +3,10 @@
     
     <div class="left-side">
       <div class="agroup-content">
-        <img src="CIPA.png" alt="" srcset="">
         <h2>CIPA WEB</h2>
-        <p>Concurso de Ideias <br>Professor Anjo</p>
+        <img src="CIPA.png" alt="" srcset="">
+        
+      
       </div>
     </div>
     
@@ -13,43 +14,42 @@
 
     <!-- Right side of the page-->
     <div class="right-side">
-      <img :src="imageSrc" class="banner">
-    <p>Por favor, insira seus <br/>dados para entrar</p>
-    <div id="inputs-group">
-
-          <div class="inputs">
-            <div class="col-sm-10">
-              <label for="staticEmail">Digite seu Email:</label>
-              <input type="email" class="form-control" id="staticEmail" placeholder="email@example.com" v-bind:class="{ error: !emailValid }" v-model="email" @input="checkEmail" aria-describedby="passwordHelpBlock">
-              <div id="passwordHelpBlock" class="form-text">
-        Use de preferencia seu email discente.
-      </div>
-              
-          </div>
-          
-            <div class="senha1">
-              <label for="inputPassword5" class="form-label">Digite sua senha:</label>
-      <input :type="showPassword ? 'text' : 'password'" v-model="senha" @input="updateImage" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" placeholder="">
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @click="togglePasswordVisibility">
-  <label class="form-check-label" for="flexCheckDefault">
-    {{ showPassword ? "Ocultar Senha" : "Mostrar Senha" }}
-  </label>
-
+    <p>Por favor, Preencha o formulario para cadastrar seu projeto</p>
+      
+      <div id="inputs-group">
+        <div class="input-group mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Nome do lider</label>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
 </div>
-            </div>
+<div class="input-group mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Integrantes</label>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="input-group mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Nome do Projeto</label>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Tema</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>natureza</option>
+    <option value="1">Sla</option>
+    <option value="2">Oporra</option>
+    <option value="3">Diabo 4</option>
+  </select>
+</div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Descreva seu projeto</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
       </div>
-          </div>
-
-      <button type="button" class="btn btn-primary btn-lg" style="margin-top: 2%; margin-bottom: 1%;">Entrar</button>
+      <button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 1%;">Cadastrar</button>
       <div id="passwordHelpBlock" class="form-text">
-        Não tem uma conta? <a @click="cadastrar" style="color: blue;">Cadastre-se!</a>
+        Quer voltar a tela Inicial? <a @click="logar" style="color: blue;">Clique Aqui!</a>
       </div>
-    </div>
-
+  </div>
   
   </div>
-
 </template>
 
 <style scoped>
@@ -131,12 +131,14 @@ left: 86%;
 }
 
 .agroup-content img{
-  width: 320px;
+  width: 570px;
   animation: pulse 8s ease-in-out infinite;
+  margin-top: 20%;
 }
 .agroup-content h2{
   font-family: 'Red Hat Display', sans-serif;
   font-size: 50pt;
+  margin-top: 15%;
 }
 .agroup-content p{
   font-family: 'Red Hat Display', sans-serif;
@@ -225,9 +227,9 @@ export default {
     }
    
   },
-     cadastrar() {
+     logar() {
       
-      this.$router.push("/register");
+      this.$router.push("/home");
 
     },
 

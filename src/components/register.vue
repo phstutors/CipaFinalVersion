@@ -242,7 +242,7 @@ export default {
 
     },
     cadastre() {
-      this.$router.push("cadastro");
+      this.$router.push("register");
     },
     recuperar() {
       return this.$router.push("/email");
