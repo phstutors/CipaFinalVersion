@@ -3,7 +3,7 @@
     
     <div class="left-side">
       <div class="agroup-content">
-        <img src="FundoCipa.png" alt="" srcset="">
+        <img src="CIPA.png" alt="" srcset="">
         <h2>CIPA WEB</h2>
         <p>Concurso de Ideias <br>Professor Anjo</p>
       </div>
